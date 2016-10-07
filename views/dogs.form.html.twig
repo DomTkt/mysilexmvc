@@ -1,0 +1,24 @@
+<h2>Formulaire</h2>
+
+{% if dog is defined %}
+<form method="post" name="formulaire" action="{{ url('dogs.save', {id: dog.id}) }}">
+
+    <input type="hidden" name="id" value={{dog.id}} />
+
+    <label for="name">Nom : </label>
+    <input type="text" name="nom" value={{dog.nom}} />
+
+    <label for="name">Maitre : </label>
+    <input type="text" name="maitre" value={{dog.maitre}}  />
+    {% else %}
+<form method="post" name="formulaire" action="{{ url('dogs.save') }}">
+    <label for="name">Nom : </label>
+    <input type="text" name="nom" />
+
+    <label for="name">Maitre : </label>
+    <input type="text" name="maitre" />
+    {% endif %}
+
+    <button type="submit">Envoyer</button>
+
+</form>

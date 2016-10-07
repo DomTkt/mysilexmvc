@@ -6,7 +6,8 @@ $app->get('/users/new', 'App\Users\Controller\IndexController::newAction')->bind
 $app->post('/users/delete/{id}', 'App\Users\Controller\IndexController::deleteAction')->bind('users.delete');
 $app->post('/users/save', 'App\Users\Controller\IndexController::saveAction')->bind('users.save');
 
-$app->get('/dogs/list', 'App\Dogs\Controller\IndexController::listAction')->bind('dogs.list');
+$app->get('/dogs/list', 'App\Dogs\Controller\IndexController::listAllAction')->bind('dogs.listall');
+$app->get('/dogs/list/{maitre}', 'App\Dogs\Controller\IndexController::listByOwnerAction')->bind('dogs.listbyo');
 $app->get('/dogs/edit/{id}', 'App\Dogs\Controller\IndexController::editAction')->bind('dogs.edit');
 $app->get('/dogs/new', 'App\Dogs\Controller\IndexController::newAction')->bind('dogs.new');
 $app->post('/dogs/delete/{id}', 'App\Dogs\Controller\IndexController::deleteAction')->bind('dogs.delete');

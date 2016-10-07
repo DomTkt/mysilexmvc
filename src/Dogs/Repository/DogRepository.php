@@ -47,6 +47,26 @@ class UserRepository
 
        return $dogEntityList;
    }
+   
+   
+   public function getByOwner($maitre)
+   {
+      
+       $queryBuilder = $this->db->createQueryBuilder();
+       $queryBuilder
+           ->select('d.*')
+           ->from('dogs', 'd')
+           ->where('maitre = ?')
+           ->setParameter(0, $maitre);
+
+       $statement = $queryBuilder->execute();
+       $dogsData = $statement->fetchAll();
+       foreach ($dogsData as $dogData) {
+           $dogEntityList[$dogData['id']] = new Dog($dogData['id'], $dogData['nom'], $dogData['maitre']);
+       }
+
+       return $dogEntityList;
+   }
 
    /**
     * Returns an User object.
