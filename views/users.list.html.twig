@@ -8,6 +8,7 @@
     <th>ID</th>
     <th>NOM</th>
     <th>PRENOM</th>
+    <th>AGE</th>
     <th>ACTION</th>
   </tr>
 </thead>
@@ -17,6 +18,7 @@
      <td>{{user.id}}</td>
      <td>{{user.nom}}</td>
      <td>{{user.prenom}}</td>
+     <td>{{user.age}}</td>
      <td>
        <form method="post" name="formulaire" action="{{ url('users.delete', {id: user.id}) }}">
             <button type="submit">Supprimer</button>
