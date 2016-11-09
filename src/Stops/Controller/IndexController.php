@@ -64,5 +64,23 @@ class IndexController
 
         return $app['twig']->render('newstop.form.html.twig', array('ligne' => $ligne));
     }
+    
+    //FONCTIONS API
+    public function listStops(Application $app)
+    {
+        $stops = $app['repository.stop']->getAll();  
+      
+        //$ligne = $app['repository.ligne']->findAll();
+        $responseData = array();
+        foreach ($stops as $stop) {
+            $responseData[] = array(
+                'id'=>$stop->getId(),
+                'nom'=> $stop->getNom(),
+                'nomLigne'=>$stop->getNomLigne()
+            );
+        }
+  
+        return $app->json($responseData);
+   }
 }
 

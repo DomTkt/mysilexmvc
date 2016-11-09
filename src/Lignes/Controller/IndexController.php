@@ -48,19 +48,21 @@ class IndexController
         return $app['twig']->render('lignes.form.html.twig');
     }
     
+    
+    //FONCTION API
     public function listNom(Application $app)
-   {
-       $lignes = $app['repository.ligne']->getAll();  
+    {
+        $lignes = $app['repository.ligne']->getAll();  
       
-       //$ligne = $app['repository.ligne']->findAll();
-       $responseData = array();
-   foreach ($lignes as $ligne) {
-       $responseData[] = array(
-           'nom'=> $ligne->getNom()
-           );
-       }
+        //$ligne = $app['repository.ligne']->findAll();
+        $responseData = array();
+        foreach ($lignes as $ligne) {
+            $responseData[] = array(
+                'nom'=> $ligne->getNom()
+            );
+        }
   
-   return $app->json($responseData);
+        return $app->json($responseData);
    }
 }
 
