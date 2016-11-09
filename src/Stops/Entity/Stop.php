@@ -8,13 +8,13 @@ class Stop
 
     protected $nom;
 
-    protected $maitre;
+    protected $nomligne;
     
-    public function __construct($id, $nom, $maitre)
+    public function __construct($id, $nom, $nomligne)
     {
         $this->id = $id;
         $this->nom = $nom;
-        $this->maitre = $maitre;
+        $this->nomligne = $nomligne;
     }
 
     public function setId($id)
@@ -27,9 +27,9 @@ class Stop
         $this->nom = $nom;
     }
 
-    public function setMaitre($maitre)
+    public function setNomLigne($nomligne)
     {
-        $this->maitre = $maitre;
+        $this->nomligne = $nomligne;
     }
 
     public function getId()
@@ -41,9 +41,9 @@ class Stop
     {
         return $this->nom;
     }
-    public function getMaitre()
+    public function getNomLigne()
     {
-        return $this->maitre;
+        return $this->nomligne;
     }
 
     public function toArray()
@@ -51,7 +51,7 @@ class Stop
         $array = array();
         $array['id'] = $this->id;
         $array['nom'] = $this->nom;
-        $array['maitre'] = $this->maitre;
+        $array['nomligne'] = $this->nomligne;
 
         return $array;
     }

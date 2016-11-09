@@ -42,7 +42,7 @@ class StopRepository
        $statement = $queryBuilder->execute();
        $stopsData = $statement->fetchAll();
        foreach ($stopsData as $stopData) {
-           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['maitre']);
+           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne']);
        }
 
        return $stopEntityList;
@@ -51,16 +51,16 @@ class StopRepository
    
    public function getByOwner($ligne)
    {
-      $prenom = "'".$ligne->getPrenom()."'";
-      //echo $prenom;
-      $where = "maitre = ".$prenom;
+      $nom = "'".$ligne->getNom()."'";
+      //echo $nom;
+      $where = "nomligne = ".$nom;
       //echo $where;
        $queryBuilder = $this->db->createQueryBuilder();
        $queryBuilder
            ->select('*')
            ->from('stops')
            ->where($where);
-           //->setParameter(0, $prenom);
+           //->setParameter(0, $nom);
 
        
        $statement = $queryBuilder->execute();
@@ -68,7 +68,7 @@ class StopRepository
        
        foreach ($stopsData as $stopData) {
            
-           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['maitre']);
+           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne']);
        }
 
        return $stopEntityList;
@@ -93,7 +93,7 @@ class StopRepository
        $statement = $queryBuilder->execute();
        $stopData = $statement->fetchAll();
 
-       return new stop($stopData[0]['id'], $stopData[0]['nom'], $stopData[0]['maitre']);
+       return new stop($stopData[0]['id'], $stopData[0]['nom'], $stopData[0]['nomligne']);
    }
 
     public function delete($id)
@@ -121,10 +121,10 @@ class StopRepository
               ->setParameter(':nom', $parameters['nom']);
         }
         
-        if ($parameters['maitre']) {
+        if ($parameters['nomligne']) {
             $queryBuilder
-            ->set('maitre', ':maitre')
-            ->setParameter(':maitre', $parameters['maitre']);
+            ->set('nomligne', ':nomligne')
+            ->setParameter(':nomligne', $parameters['nomligne']);
         }
 
         $statement = $queryBuilder->execute();
@@ -138,11 +138,11 @@ class StopRepository
           ->values(
               array(
                 'nom' => ':nom',
-                'maitre' => ':maitre',
+                'nomligne' => ':nomligne',
               )
           )
           ->setParameter(':nom', $parameters['nom'])
-          ->setParameter(':maitre', $parameters['maitre']);
+          ->setParameter(':nomligne', $parameters['nomligne']);
         $statement = $queryBuilder->execute();
     }
 }

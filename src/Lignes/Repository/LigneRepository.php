@@ -42,7 +42,7 @@ class LigneRepository
        $statement = $queryBuilder->execute();
        $lignesData = $statement->fetchAll();
        foreach ($lignesData as $ligneData) {
-           $ligneEntityList[$ligneData['id']] = new ligne($ligneData['id'], $ligneData['nom'], $ligneData['prenom'], $ligneData['age']);
+           $ligneEntityList[$ligneData['id']] = new ligne($ligneData['id'], $ligneData['nom']);
        }
 
        return $ligneEntityList;
@@ -67,7 +67,7 @@ class LigneRepository
        $statement = $queryBuilder->execute();
        $ligneData = $statement->fetchAll();
 
-       return new ligne($ligneData[0]['id'], $ligneData[0]['nom'], $ligneData[0]['prenom'], $ligneData[0]['age']);
+       return new ligne($ligneData[0]['id'], $ligneData[0]['nom']);
    }
 
     public function delete($id)
@@ -95,17 +95,6 @@ class LigneRepository
               ->setParameter(':nom', $parameters['nom']);
         }
 
-        if ($parameters['prenom']) {
-            $queryBuilder
-            ->set('prenom', ':prenom')
-            ->setParameter(':prenom', $parameters['prenom']);
-        }
-        
-        if ($parameters['age']) {
-            $queryBuilder
-            ->set('age', ':age')
-            ->setParameter(':age', $parameters['age']);
-        }
 
         $statement = $queryBuilder->execute();
     }
@@ -117,14 +106,11 @@ class LigneRepository
           ->insert('lignes')
           ->values(
               array(
-                'nom' => ':nom',
-                'prenom' => ':prenom',
-                'age' => ':age',
+                'nom' => ':nom'
+             
               )
           )
-          ->setParameter(':nom', $parameters['nom'])
-          ->setParameter(':prenom', $parameters['prenom'])
-          ->setParameter(':age', $parameters['age']);
+          ->setParameter(':nom', $parameters['nom']);
         $statement = $queryBuilder->execute();
     }
 }

@@ -56,7 +56,6 @@ class IndexController
        $responseData = array();
    foreach ($lignes as $ligne) {
        $responseData[] = array(
-           'prenom' => $ligne->getPrenom(),
            'nom'=> $ligne->getNom()
            );
        }

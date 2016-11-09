@@ -1,4 +1,4 @@
-<h1>Liste des utilisateurs</h1>
+<h1>Liste des lignes</h1>
 <form method="get" name="formulaire" action="{{ url('lignes.new') }}">
   <button type="submit">Ajouter</button>
 </form>
@@ -17,8 +17,6 @@
    <tr>
      <td>{{ligne.id}}</td>
      <td>{{ligne.nom}}</td>
-     <td>{{ligne.prenom}}</td>
-     <td>{{ligne.age}}</td>
      <td>
        <form method="post" name="formulaire" action="{{ url('lignes.delete', {id: ligne.id}) }}">
             <button type="submit">Supprimer</button>
@@ -31,12 +29,12 @@
       </td>
       <td>
         <form method="get" name="formulaire" action="{{ url('stops.newfromligne', {id: ligne.id}) }}">
-          <button type="submit">Ajout d'un chien</button>
+          <button type="submit">Ajout d'un arret</button>
         </form>
       </td>
       <td>
         <form method="get" name="formulaire" action="{{ url('stops.byligne', {id: ligne.id}) }}">
-          <button type="submit">Liste des chiens</button>
+          <button type="submit">Liste des arrets</button>
         </form>
       </td>
    </tr>
