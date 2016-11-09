@@ -6,7 +6,7 @@ use App\Stops\Entity\Stop;
 use Doctrine\DBAL\Connection;
 
 /**
- * line repository.
+ * stop repository.
  */
 class StopRepository
 {

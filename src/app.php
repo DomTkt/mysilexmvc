@@ -17,6 +17,6 @@ $app['repository.ligne'] = function ($app) {
     return new App\Lignes\Repository\LigneRepository($app['db']);
 };
 
-$app['repository.dog'] = function ($app) {
+$app['repository.stop'] = function ($app) {
     return new App\Stops\Repository\StopRepository($app['db']);
 };
