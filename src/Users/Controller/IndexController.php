@@ -47,4 +47,21 @@ class IndexController
     {
         return $app['twig']->render('users.form.html.twig');
     }
+    
+    public function listNom(Application $app)
+   {
+       $users = $app['repository.user']->getAll();  
+      
+       //$user = $app['repository.user']->findAll();
+       $responseData = array();
+   foreach ($users as $user) {
+       $responseData[] = array(
+           'prenom' => $user->getPrenom(),
+           'nom'=> $user->getNom()
+           );
+       }
+  
+   return $app->json($responseData);
+   }
 }
+
