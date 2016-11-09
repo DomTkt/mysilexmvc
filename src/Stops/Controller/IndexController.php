@@ -100,5 +100,27 @@ class IndexController
   
         return $app->json($responseData);
    }
+   
+   public function searchAction(Application $app, $idStop, $heure)
+    {
+       
+        $horaireNextArret = $app['repository.stop']->getProHoraireByArret( $idStop,$heure);  
+      
+        $responseData[] = array(
+                'Prochaine horaire'=>$horaireNextArret
+                
+           );
+        
+  
+        return $app->json($responseData);
+   }
+   
+   public function seeAction(Request $request, Application $app)
+    {
+        $parameters = $request->attributes->all();
+        $stop = $app['repository.stop']->getById($parameters['id']);
+
+        return $app['twig']->render('arretpro.form.html.twig', array('stop' => $stop));
+   }
 }
 

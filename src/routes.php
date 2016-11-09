@@ -20,3 +20,5 @@ $app->post('/stops/save', 'App\Stops\Controller\IndexController::saveAction')->b
 //api stop
 $app->get('/stops/all','App\Stops\Controller\IndexController::listStops')->bind('/stops/all');
 $app->get('/stops/horaires/{id}','App\Stops\Controller\IndexController::horairesByStopAction')->bind('stops.horaires');
+$app->post('/stops/search/{id}','App\Stops\Controller\IndexController::searchAction')->bind('stops.search');
+$app->get('/stops/see/{id}','App\Stops\Controller\IndexController::seeAction')->bind('stops.see');

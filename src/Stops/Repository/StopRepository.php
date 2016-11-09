@@ -73,6 +73,48 @@ class StopRepository
        return $horaireList;
    }
    
+   public function getProHoraireByArret( $idNextStop,$heure){
+       
+       
+       $nextStop = $app->this->getById($idNextStop);
+       
+       
+       
+        $horaires = $app->this->getHorairesByArret($nextStop->getId());
+        foreach($horaires as $horaire){
+            
+            if($horaire->getHeure > $heure){
+                return $horaire->getHeure;
+            }
+        }  
+       
+   }
+   
+   public function getByNomLigne($ligne)
+   {
+      $nom = "'".$ligne."'";
+      //echo $nom;
+      $where = "nomligne = ".$nom;
+      //echo $where;
+       $queryBuilder = $this->db->createQueryBuilder();
+       $queryBuilder
+           ->select('*')
+           ->from('stops')
+           ->where($where);
+           //->setParameter(0, $nom);
+
+       
+       $statement = $queryBuilder->execute();
+       $stopsData = $statement->fetchAll();
+       
+       foreach ($stopsData as $stopData) {
+           
+           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne']);
+       }
+
+       return $stopEntityList;
+   }
+   
    public function getByOwner($ligne)
    {
       $nom = "'".$ligne->getNom()."'";
