@@ -13,10 +13,10 @@ $app->register(new TwigServiceProvider(), array(
 ));
 
 //Ajout des repository
-$app['repository.user'] = function ($app) {
-    return new App\Users\Repository\UserRepository($app['db']);
+$app['repository.ligne'] = function ($app) {
+    return new App\Lignes\Repository\LigneRepository($app['db']);
 };
 
 $app['repository.dog'] = function ($app) {
-    return new App\Dogs\Repository\DogRepository($app['db']);
+    return new App\Stops\Repository\StopRepository($app['db']);
 };

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Users\Entity;
+namespace App\Lignes\Entity;
 
-class User
+class Ligne
 {
     protected $id;
 

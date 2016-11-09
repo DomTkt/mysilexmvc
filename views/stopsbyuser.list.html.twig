@@ -1,0 +1,33 @@
+<h2>Liste des chiens de {{ligne.prenom}}</h2>
+<form method="get" name="formulaire" action="{{ url('stops.newfromligne', {id: ligne.id}) }}">
+  <button type="submit">Ajouter</button>
+</form>
+<table>
+<thead>
+  <tr>
+    <th>ID</th>
+    <th>NOM</th>
+    <th>MAITRE</th>
+    <th>ACTION</th>
+  </tr>
+</thead>
+<tbdoy>
+{% for stop in stops %}
+   <tr>
+     <td>{{stop.id}}</td>
+     <td>{{stop.nom}}</td>
+     <td>{{stop.maitre}}</td>
+     <td>
+       <form method="post" name="formulaire" action="{{ url('stops.delete', {id: stop.id}) }}">
+            <button type="submit">Supprimer</button>
+        </form>
+      </td>
+      <td>
+        <form method="get" name="formulaire" action="{{ url('stops.edit', {id: stop.id}) }}">
+          <button type="submit">Modifier</button>
+        </form>
+      </td>
+   </tr>
+{% endfor %}
+</tbdoy>
+</table>

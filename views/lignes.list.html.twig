@@ -1,5 +1,5 @@
 <h1>Liste des utilisateurs</h1>
-<form method="get" name="formulaire" action="{{ url('users.new') }}">
+<form method="get" name="formulaire" action="{{ url('lignes.new') }}">
   <button type="submit">Ajouter</button>
 </form>
 <table>
@@ -13,29 +13,29 @@
   </tr>
 </thead>
 <tbdoy>
-{% for user in users %}
+{% for ligne in lignes %}
    <tr>
-     <td>{{user.id}}</td>
-     <td>{{user.nom}}</td>
-     <td>{{user.prenom}}</td>
-     <td>{{user.age}}</td>
+     <td>{{ligne.id}}</td>
+     <td>{{ligne.nom}}</td>
+     <td>{{ligne.prenom}}</td>
+     <td>{{ligne.age}}</td>
      <td>
-       <form method="post" name="formulaire" action="{{ url('users.delete', {id: user.id}) }}">
+       <form method="post" name="formulaire" action="{{ url('lignes.delete', {id: ligne.id}) }}">
             <button type="submit">Supprimer</button>
         </form>
       </td>
       <td>
-        <form method="get" name="formulaire" action="{{ url('users.edit', {id: user.id}) }}">
+        <form method="get" name="formulaire" action="{{ url('lignes.edit', {id: ligne.id}) }}">
           <button type="submit">Modifier</button>
         </form>
       </td>
       <td>
-        <form method="get" name="formulaire" action="{{ url('dogs.newfromuser', {id: user.id}) }}">
+        <form method="get" name="formulaire" action="{{ url('stops.newfromligne', {id: ligne.id}) }}">
           <button type="submit">Ajout d'un chien</button>
         </form>
       </td>
       <td>
-        <form method="get" name="formulaire" action="{{ url('dogs.byuser', {id: user.id}) }}">
+        <form method="get" name="formulaire" action="{{ url('stops.byligne', {id: ligne.id}) }}">
           <button type="submit">Liste des chiens</button>
         </form>
       </td>

@@ -13,12 +13,12 @@
     },
     "autoload": {
        "psr-4": {
-         "App\\Users\\Controller\\": "src/Users/Controller/",
-         "App\\Users\\Repository\\": "src/Users/Repository/",
-         "App\\Users\\Entity\\": "src/Users/Entity/",
-         "App\\Dogs\\Controller\\": "src/Dogs/Controller/",
-         "App\\Dogs\\Repository\\": "src/Dogs/Repository/",
-         "App\\Dogs\\Entity\\": "src/Dogs/Entity/"
+         "App\\Lignes\\Controller\\": "src/Lignes/Controller/",
+         "App\\Lignes\\Repository\\": "src/Lignes/Repository/",
+         "App\\Lignes\\Entity\\": "src/Lignes/Entity/",
+         "App\\Stops\\Controller\\": "src/Stops/Controller/",
+         "App\\Stops\\Repository\\": "src/Stops/Repository/",
+         "App\\Stops\\Entity\\": "src/Stops/Entity/"
        }
    }
 }

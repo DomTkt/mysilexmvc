@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Users\Repository;
+namespace App\Lignes\Repository;
 
-use App\Users\Entity\User;
+use App\Lignes\Entity\Ligne;
 use Doctrine\DBAL\Connection;
 
 /**
- * User repository.
+ * line repository.
  */
-class UserRepository
+class LigneRepository
 {
     /**
      * @var \Doctrine\DBAL\Connection
@@ -21,60 +21,60 @@ class UserRepository
     }
 
    /**
-    * Returns a collection of users.
+    * Returns a collection of lines.
     *
     * @param int $limit
-    *   The number of users to return.
+    *   The number of lines to return.
     * @param int $offset
-    *   The number of users to skip.
+    *   The number of lines to skip.
     * @param array $orderBy
     *   Optionally, the order by info, in the $column => $direction format.
     *
-    * @return array A collection of users, keyed by user id.
+    * @return array A collection of lines, keyed by line id.
     */
    public function getAll()
    {
        $queryBuilder = $this->db->createQueryBuilder();
        $queryBuilder
-           ->select('u.*')
-           ->from('users', 'u');
+           ->select('l.*')
+           ->from('lignes', 'l');
 
        $statement = $queryBuilder->execute();
-       $usersData = $statement->fetchAll();
-       foreach ($usersData as $userData) {
-           $userEntityList[$userData['id']] = new User($userData['id'], $userData['nom'], $userData['prenom'], $userData['age']);
+       $lignesData = $statement->fetchAll();
+       foreach ($lignesData as $ligneData) {
+           $ligneEntityList[$ligneData['id']] = new ligne($ligneData['id'], $ligneData['nom'], $ligneData['prenom'], $ligneData['age']);
        }
 
-       return $userEntityList;
+       return $ligneEntityList;
    }
 
    /**
-    * Returns an User object.
+    * Returns an line object.
     *
     * @param $id
-    *   The id of the user to return.
+    *   The id of the line to return.
     *
-    * @return array A collection of users, keyed by user id.
+    * @return array A collection of lignes, keyed by line id.
     */
    public function getById($id)
    {
        $queryBuilder = $this->db->createQueryBuilder();
        $queryBuilder
-           ->select('u.*')
-           ->from('users', 'u')
+           ->select('l.*')
+           ->from('lignes', 'l')
            ->where('id = ?')
            ->setParameter(0, $id);
        $statement = $queryBuilder->execute();
-       $userData = $statement->fetchAll();
+       $ligneData = $statement->fetchAll();
 
-       return new User($userData[0]['id'], $userData[0]['nom'], $userData[0]['prenom'], $userData[0]['age']);
+       return new ligne($ligneData[0]['id'], $ligneData[0]['nom'], $ligneData[0]['prenom'], $ligneData[0]['age']);
    }
 
     public function delete($id)
     {
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-          ->delete('users')
+          ->delete('lignes')
           ->where('id = :id')
           ->setParameter(':id', $id);
 
@@ -85,7 +85,7 @@ class UserRepository
     {
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-          ->update('users')
+          ->update('lignes')
           ->where('id = :id')
           ->setParameter(':id', $parameters['id']);
 
@@ -114,7 +114,7 @@ class UserRepository
     {
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-          ->insert('users')
+          ->insert('lignes')
           ->values(
               array(
                 'nom' => ':nom',

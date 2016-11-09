@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Dogs\Repository;
+namespace App\Stops\Repository;
 
-use App\Dogs\Entity\Dog;
+use App\Stops\Entity\Stop;
 use Doctrine\DBAL\Connection;
 
 /**
- * User repository.
+ * line repository.
  */
-class DogRepository
+class StopRepository
 {
     /**
      * @var \Doctrine\DBAL\Connection
@@ -21,86 +21,86 @@ class DogRepository
     }
 
    /**
-    * Returns a collection of users.
+    * Returns a collection of lines.
     *
     * @param int $limit
-    *   The number of users to return.
+    *   The number of lines to return.
     * @param int $offset
-    *   The number of users to skip.
+    *   The number of lines to skip.
     * @param array $orderBy
     *   Optionally, the order by info, in the $column => $direction format.
     *
-    * @return array A collection of users, keyed by user id.
+    * @return array A collection of lines, keyed by line id.
     */
    public function getAll()
    {
        $queryBuilder = $this->db->createQueryBuilder();
        $queryBuilder
-           ->select('d.*')
-           ->from('dogs', 'd');
+           ->select('s.*')
+           ->from('stops', 's');
 
        $statement = $queryBuilder->execute();
-       $dogsData = $statement->fetchAll();
-       foreach ($dogsData as $dogData) {
-           $dogEntityList[$dogData['id']] = new Dog($dogData['id'], $dogData['nom'], $dogData['maitre']);
+       $stopsData = $statement->fetchAll();
+       foreach ($stopsData as $stopData) {
+           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['maitre']);
        }
 
-       return $dogEntityList;
+       return $stopEntityList;
    }
    
    
-   public function getByOwner($user)
+   public function getByOwner($ligne)
    {
-      $prenom = "'".$user->getPrenom()."'";
+      $prenom = "'".$ligne->getPrenom()."'";
       //echo $prenom;
       $where = "maitre = ".$prenom;
       //echo $where;
        $queryBuilder = $this->db->createQueryBuilder();
        $queryBuilder
            ->select('*')
-           ->from('dogs')
+           ->from('stops')
            ->where($where);
            //->setParameter(0, $prenom);
 
        
        $statement = $queryBuilder->execute();
-       $dogsData = $statement->fetchAll();
+       $stopsData = $statement->fetchAll();
        
-       foreach ($dogsData as $dogData) {
+       foreach ($stopsData as $stopData) {
            
-           $dogEntityList[$dogData['id']] = new Dog($dogData['id'], $dogData['nom'], $dogData['maitre']);
+           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['maitre']);
        }
 
-       return $dogEntityList;
+       return $stopEntityList;
    }
 
    /**
-    * Returns an User object.
+    * Returns an line object.
     *
     * @param $id
-    *   The id of the user to return.
+    *   The id of the line to return.
     *
-    * @return array A collection of users, keyed by user id.
+    * @return array A collection of lines, keyed by line id.
     */
    public function getById($id)
    {
        $queryBuilder = $this->db->createQueryBuilder();
        $queryBuilder
-           ->select('d.*')
-           ->from('dogs', 'd')
+           ->select('s.*')
+           ->from('stops', 's')
            ->where('id = ?')
            ->setParameter(0, $id);
        $statement = $queryBuilder->execute();
-       $dogData = $statement->fetchAll();
+       $stopData = $statement->fetchAll();
 
-       return new Dog($dogData[0]['id'], $dogData[0]['nom'], $dogData[0]['maitre']);
+       return new stop($stopData[0]['id'], $stopData[0]['nom'], $stopData[0]['maitre']);
    }
 
     public function delete($id)
     {
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-          ->delete('dogs')
+          ->delete('stops')
           ->where('id = :id')
           ->setParameter(':id', $id);
 
@@ -111,7 +111,7 @@ class DogRepository
     {
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-          ->update('dogs')
+          ->update('stops')
           ->where('id = :id')
           ->setParameter(':id', $parameters['id']);
 
@@ -134,7 +134,7 @@ class DogRepository
     {
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-          ->insert('dogs')
+          ->insert('stops')
           ->values(
               array(
                 'nom' => ':nom',

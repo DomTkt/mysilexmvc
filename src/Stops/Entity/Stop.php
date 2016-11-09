@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Dogs\Entity;
+namespace App\Stops\Entity;
 
-class Dog
+class Stop
 {
     protected $id;
 
