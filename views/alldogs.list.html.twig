@@ -1,1 +1,33 @@
-{# empty Twig template #}
+<h1>Liste des chiens</h1>
+<form method="get" name="formulaire" action="{{ url('dogs.new') }}">
+  <button type="submit">Ajouter</button>
+</form>
+<table>
+<thead>
+  <tr>
+    <th>ID</th>
+    <th>NOM</th>
+    <th>MAITRE</th>
+    <th>ACTION</th>
+  </tr>
+</thead>
+<tbdoy>
+{% for dog in dogs %}
+   <tr>
+     <td>{{dog.id}}</td>
+     <td>{{dog.nom}}</td>
+     <td>{{dog.maitre}}</td>
+     <td>
+       <form method="post" name="formulaire" action="{{ url('dogs.delete', {id: dog.id}) }}">
+            <button type="submit">Supprimer</button>
+        </form>
+      </td>
+      <td>
+        <form method="get" name="formulaire" action="{{ url('dogs.edit', {id: dog.id}) }}">
+          <button type="submit">Modifier</button>
+        </form>
+      </td>
+   </tr>
+{% endfor %}
+</tbdoy>
+</table>

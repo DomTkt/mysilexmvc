@@ -1,0 +1,13 @@
+<h2>Formulaire depuis un utilisateur</h2>
+
+
+<form method="post" name="formulaire" action="{{ url('dogs.save') }}">
+    <label for="name">Nom : </label>
+    <input type="text" name="nom" />
+
+    <label for="name">Maitre : </label>
+    <input type="text" name="maitre" value={{user.prenom}} />
+    
+    <button type="submit">Envoyer</button>
+
+</form>

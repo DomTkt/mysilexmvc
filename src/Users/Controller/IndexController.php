@@ -41,6 +41,7 @@ class IndexController
 
         return $app->redirect($app['url_generator']->generate('users.list'));
     }
+    
 
     public function newAction(Request $request, Application $app)
     {

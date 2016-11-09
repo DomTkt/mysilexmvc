@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Users\Repository;
+namespace App\Dogs\Repository;
 
 use App\Dogs\Entity\Dog;
 use Doctrine\DBAL\Connection;
@@ -8,7 +8,7 @@ use Doctrine\DBAL\Connection;
 /**
  * User repository.
  */
-class UserRepository
+class DogRepository
 {
     /**
      * @var \Doctrine\DBAL\Connection
@@ -49,19 +49,25 @@ class UserRepository
    }
    
    
-   public function getByOwner($maitre)
+   public function getByOwner($user)
    {
-      
+      $prenom = "'".$user->getPrenom()."'";
+      //echo $prenom;
+      $where = "maitre = ".$prenom;
+      //echo $where;
        $queryBuilder = $this->db->createQueryBuilder();
        $queryBuilder
-           ->select('d.*')
-           ->from('dogs', 'd')
-           ->where('maitre = ?')
-           ->setParameter(0, $maitre);
+           ->select('*')
+           ->from('dogs')
+           ->where($where);
+           //->setParameter(0, $prenom);
 
+       
        $statement = $queryBuilder->execute();
        $dogsData = $statement->fetchAll();
+       
        foreach ($dogsData as $dogData) {
+           
            $dogEntityList[$dogData['id']] = new Dog($dogData['id'], $dogData['nom'], $dogData['maitre']);
        }
 

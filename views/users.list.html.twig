@@ -29,6 +29,16 @@
           <button type="submit">Modifier</button>
         </form>
       </td>
+      <td>
+        <form method="get" name="formulaire" action="{{ url('dogs.newfromuser', {id: user.id}) }}">
+          <button type="submit">Ajout d'un chien</button>
+        </form>
+      </td>
+      <td>
+        <form method="get" name="formulaire" action="{{ url('dogs.byuser', {id: user.id}) }}">
+          <button type="submit">Liste des chiens</button>
+        </form>
+      </td>
    </tr>
 {% endfor %}
 </tbdoy>
