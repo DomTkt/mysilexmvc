@@ -27,6 +27,11 @@
           <button type="submit">Modifier</button>
         </form>
       </td>
+      <td>
+        <form method="get" name="formulaire" action="{{ url('stops.horaires', {id: stop.id}) }}">
+          <button type="submit">Voir les horaires</button>
+        </form>
+      </td>
    </tr>
 {% endfor %}
 </tbdoy>

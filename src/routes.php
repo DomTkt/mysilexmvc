@@ -19,3 +19,4 @@ $app->post('/stops/delete/{id}', 'App\Stops\Controller\IndexController::deleteAc
 $app->post('/stops/save', 'App\Stops\Controller\IndexController::saveAction')->bind('stops.save');
 //api stop
 $app->get('/stops/all','App\Stops\Controller\IndexController::listStops')->bind('/stops/all');
+$app->get('/stops/horaires/{id}','App\Stops\Controller\IndexController::horairesByStopAction')->bind('stops.horaires');

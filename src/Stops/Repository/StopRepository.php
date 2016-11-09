@@ -3,6 +3,7 @@
 namespace App\Stops\Repository;
 
 use App\Stops\Entity\Stop;
+use App\Stops\Entity\Horaire;
 use Doctrine\DBAL\Connection;
 
 /**
@@ -48,6 +49,29 @@ class StopRepository
        return $stopEntityList;
    }
    
+   public function getHorairesByArret($id)
+   {
+       //$id = $stop->getId();
+       $where = "arret = ".$id;
+      
+       $queryBuilder = $this->db->createQueryBuilder();
+       $queryBuilder
+           ->select('*')
+           ->from('horaires')
+           ->where($where);
+           
+
+       
+       $statement = $queryBuilder->execute();
+       $horaires = $statement->fetchAll();
+       
+       foreach ($horaires as $horaire) {
+           
+           $horaireList[$horaire['id']] = new Horaire($horaire['id'], $horaire['arret'], $horaire['heure']);
+       }
+
+       return $horaireList;
+   }
    
    public function getByOwner($ligne)
    {

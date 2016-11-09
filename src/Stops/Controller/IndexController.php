@@ -82,5 +82,23 @@ class IndexController
   
         return $app->json($responseData);
    }
+   
+   public function horairesByStopAction(Application $app, $id)
+    {
+       
+        $horaires = $app['repository.stop']->getHorairesByArret($id);  
+      
+        //$ligne = $app['repository.ligne']->findAll();
+        $responseData = array();
+        foreach ($horaires as $horaire) {
+            $responseData[] = array(
+                'id'=>$horaire->getId(),
+                'id arret'=> $horaire->getArret(),
+                'heure'=>$horaire->getHeure()
+            );
+        }
+  
+        return $app->json($responseData);
+   }
 }
 
