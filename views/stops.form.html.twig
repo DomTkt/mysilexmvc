@@ -1,0 +1,24 @@
+<h2>Formulaire</h2>
+
+{% if stop is defined %}
+<form method="post" name="formulaire" action="{{ url('stops.save', {id: stop.id}) }}">
+
+    <input type="hidden" name="id" value={{stop.id}} />
+
+    <label for="name">Nom : </label>
+    <input type="text" name="nom" value={{stop.nom}} />
+
+    <label for="name">Nom ligne : </label>
+    <input type="text" name="nomligne" value={{stop.nomligne}}  />
+    {% else %}
+<form method="post" name="formulaire" action="{{ url('stops.save') }}">
+    <label for="name">Nom : </label>
+    <input type="text" name="nom" />
+
+    <label for="name">Nom ligne : </label>
+    <input type="text" name="nomligne" />
+    {% endif %}
+
+    <button type="submit">Envoyer</button>
+
+</form>
