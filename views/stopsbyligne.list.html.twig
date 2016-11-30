@@ -33,7 +33,7 @@
         </form>
       </td>
       <td>
-        <form method="get" name="formulaire" action="{{ url('stops.see', {id: stop.id}) }}">
+        <form method="get" name="formulaire" action="{{ url('stops.search', {idStop: stop.id}) }}">
           <button type="submit">Voir la prochaine horaire</button>
         </form>
       </td>

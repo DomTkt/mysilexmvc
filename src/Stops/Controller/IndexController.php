@@ -101,9 +101,9 @@ class IndexController
         return $app->json($responseData);
    }
    
-   public function searchAction(Application $app, $idStop, $heure)
+   public function searchAction(Application $app, $idStop)
     {
-       
+       $heure = date('H:i:s');
         $horaireNextArret = $app['repository.stop']->getProHoraireByArret( $idStop,$heure);  
       
         $responseData[] = array(

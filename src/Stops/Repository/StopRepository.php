@@ -76,11 +76,11 @@ class StopRepository
    public function getProHoraireByArret( $idNextStop,$heure){
        
        
-       $nextStop = $app->this->getById($idNextStop);
+       $nextStop = $this->getById($idNextStop);
        
        
        
-        $horaires = $app->this->getHorairesByArret($nextStop->getId());
+        $horaires = $this->getHorairesByArret($nextStop->getId());
         foreach($horaires as $horaire){
             
             if($horaire->getHeure > $heure){
