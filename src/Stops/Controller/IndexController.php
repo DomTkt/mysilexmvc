@@ -97,7 +97,7 @@ class IndexController
                 'heure'=>$horaire->getHeure()
             );
         }
-  
+
         return $app->json($responseData);
    }
    
@@ -122,5 +122,7 @@ class IndexController
 
         return $app['twig']->render('arretpro.form.html.twig', array('stop' => $stop));
    }
+ 
+
 }
 

@@ -22,3 +22,4 @@ $app->get('/stops/all','App\Stops\Controller\IndexController::listStops')->bind(
 $app->get('/stops/horaires/{id}','App\Stops\Controller\IndexController::horairesByStopAction')->bind('stops.horaires');
 $app->get('/stops/search/{idStop}','App\Stops\Controller\IndexController::searchAction')->bind('stops.search');
 $app->get('/stops/see/{id}','App\Stops\Controller\IndexController::seeAction')->bind('stops.see');
+

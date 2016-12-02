@@ -72,7 +72,7 @@ class StopRepository
 
        return $horaireList;
    }
-   
+
    public function getProHoraireByArret( $idNextStop,$heure){
        
        
@@ -115,7 +115,7 @@ class StopRepository
 
        return $stopEntityList;
    }
-   
+
    public function getByOwner($ligne)
    {
       $nom = "'".$ligne->getNom()."'";
