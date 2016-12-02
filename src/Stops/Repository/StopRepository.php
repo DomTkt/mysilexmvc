@@ -85,6 +85,7 @@ class StopRepository
             
             if($horaire->getHeure > $heure){
                 return $horaire->getHeure;
+                
             }
         }  
        
