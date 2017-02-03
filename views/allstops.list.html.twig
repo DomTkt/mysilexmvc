@@ -7,7 +7,9 @@
   <tr>
     <th>ID</th>
     <th>NOM</th>
-    <th>MAITRE</th>
+    <th>LIGNE</th>
+    <th>LATITUDE</th>
+    <th>LONGITUDE</th>
     <th>ACTION</th>
   </tr>
 </thead>
@@ -17,6 +19,8 @@
      <td>{{stop.id}}</td>
      <td>{{stop.nom}}</td>
      <td>{{stop.nomligne}}</td>
+     <td>{{stop.latitude}}</td>
+     <td>{{stop.longitude}}</td>
      <td>
        <form method="post" name="formulaire" action="{{ url('stops.delete', {id: stop.id}) }}">
             <button type="submit">Supprimer</button>

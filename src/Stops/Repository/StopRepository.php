@@ -43,7 +43,7 @@ class StopRepository
        $statement = $queryBuilder->execute();
        $stopsData = $statement->fetchAll();
        foreach ($stopsData as $stopData) {
-           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne']);
+           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne'], $stopData['latitude'], $stopData['longitude']);
        }
 
        return $stopEntityList;
@@ -126,7 +126,7 @@ class StopRepository
        
        foreach ($stopsData as $stopData) {
            
-           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne']);
+           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne'], $stopData['latitude'], $stopData['longitude']);
        }
 
        return $stopEntityList;
@@ -151,7 +151,7 @@ class StopRepository
        $i=0;
        foreach ($stopsData as $stopData) {
            $i++;
-           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne']);
+           $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne'], $stopData['latitude'], $stopData['longitude']);
        }
 
        if($i==0)
@@ -178,7 +178,7 @@ class StopRepository
        $statement = $queryBuilder->execute();
        $stopData = $statement->fetchAll();
 
-       return new stop($stopData[0]['id'], $stopData[0]['nom'], $stopData[0]['nomligne']);
+       return new stop($stopData[0]['id'], $stopData[0]['nom'], $stopData[0]['nomligne'], $stopData[0]['latitude'], $stopData[0]['longitude']);
    }
 
     public function delete($id)
@@ -211,6 +211,18 @@ class StopRepository
             ->set('nomligne', ':nomligne')
             ->setParameter(':nomligne', $parameters['nomligne']);
         }
+        
+        if ($parameters['latitude']) {
+            $queryBuilder
+            ->set('latitude', ':latitude')
+            ->setParameter(':latitude', $parameters['latitude']);
+        }
+        
+        if ($parameters['longitude']) {
+            $queryBuilder
+            ->set('longitude', ':longitude')
+            ->setParameter(':longitude', $parameters['longitude']);
+        }
 
         $statement = $queryBuilder->execute();
     }
@@ -241,10 +253,14 @@ class StopRepository
               array(
                 'nom' => ':nom',
                 'nomligne' => ':nomligne',
+                'latitude' => ':latitude',
+                'longitude' => ':longitude'
               )
           )
           ->setParameter(':nom', $parameters['nom'])
-          ->setParameter(':nomligne', $parameters['nomligne']);
+          ->setParameter(':nomligne', $parameters['nomligne'])
+          ->setParameter(':latitude', $parameters['latitude'])
+          ->setParameter(':longitude', $parameters['longitude']);
         $statement = $queryBuilder->execute();
     }
 }

@@ -76,7 +76,9 @@ class IndexController
             $responseData[] = array(
                 'id'=>$stop->getId(),
                 'nom'=> $stop->getNom(),
-                'nomLigne'=>$stop->getNomLigne()
+                'nomLigne'=>$stop->getNomLigne(),
+                'latitude'=>$stop->getLatitude(),
+                'longitude'=>$stop->getLongitude()
             );
         }
   

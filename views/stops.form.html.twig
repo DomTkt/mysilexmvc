@@ -10,6 +10,12 @@
 
     <label for="name">Nom ligne : </label>
     <input type="text" name="nomligne" value={{stop.nomligne}}  />
+    
+    <label for="name">Latitude : </label>
+    <input type="text" name="latitude" value={{stop.latitude}}  />
+    
+    <label for="name">Longitude : </label>
+    <input type="text" name="longitude" value={{stop.longitude}}  />
     {% else %}
 <form method="post" name="formulaire" action="{{ url('stops.save') }}">
     <label for="name">Nom : </label>
@@ -17,6 +23,12 @@
 
     <label for="name">Nom ligne : </label>
     <input type="text" name="nomligne" />
+    
+    <label for="name">Latitude : </label>
+    <input type="text" name="latitude" />
+    
+    <label for="name">Longitude : </label>
+    <input type="text" name="longitude" />
     {% endif %}
 
     <button type="submit">Envoyer</button>
