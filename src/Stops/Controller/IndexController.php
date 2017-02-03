@@ -91,16 +91,23 @@ class IndexController
         $horaires = $app['repository.stop']->getHorairesByArret($id);  
       
         //$ligne = $app['repository.ligne']->findAll();
+        
         $responseData = array();
-        foreach ($horaires as $horaire) {
-            $responseData[] = array(
-                'id'=>$horaire->getId(),
-                'id arret'=> $horaire->getArret(),
-                'heure'=>$horaire->getHeure()
-            );
+        $i = 0;
+        if(!empty($responseData)){
+            foreach ($horaires as $horaire) {
+                $i++;
+                $responseData[] = array(
+                    'id'=>$horaire->getId(),
+                    'id arret'=> $horaire->getArret(),
+                    'heure'=>$horaire->getHeure()
+                );
+            }
+            return $app->json($responseData);
+        }else{
+            $responseData[] = array('Pas d\'horaires renseigné');
+            return $app->json($responseData);
         }
-
-        return $app->json($responseData);
    }
    
    public function searchAction(Application $app, $idStop)

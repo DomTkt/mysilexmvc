@@ -69,8 +69,8 @@ class StopRepository
            
            $horaireList[$horaire['id']] = new Horaire($horaire['id'], $horaire['arret'], $horaire['heure']);
        }
-
-       return $horaireList;
+       if(!empty($horaireList))
+        return $horaireList;
    }
 
    public function getProHoraireByArret( $idNextStop,$heure){
