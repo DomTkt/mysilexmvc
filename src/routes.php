@@ -1,4 +1,7 @@
 <?php
+//index
+$app->get('/', 'App\Lignes\Controller\IndexController::listAction')->bind('base.see');
+
 //ligne part
 $app->get('/lignes/list', 'App\Lignes\Controller\IndexController::listAction')->bind('lignes.list');
 $app->get('/lignes/edit/{id}', 'App\Lignes\Controller\IndexController::editAction')->bind('lignes.edit');
