@@ -122,7 +122,39 @@ class IndexController
 
         return $app['twig']->render('arretpro.form.html.twig', array('stop' => $stop));
    }
+   
+   
+   public function findNextTimeByStopAndTimeAction(Request $request, Application $app)
+   {
+       $parameters = $request->attributes->all();
+        $stop = $app['repository.stop']->getById($parameters['id']);
+        $horaires = $app['repository.stop']->getHorairesByArret($parameters['id']);
+       
+       return $app['twig']->render('findNextTime.html.twig', array('stop' => $stop, 'horaires'=>$horaires));
+   }
  
+   
+   public function seeNextTimeByStopAndTimeAction(Request $request, Application $app)
+   {
+       $parameters = $request->request->all();
+        $stop = $app['repository.stop']->getById($parameters['id']);
+       $horaire = $app['repository.stop']->getHoraireById($parameters['horaire']);
+       $nextStop = $app['repository.stop']->getById($parameters['nextstop']);
+       
+       $arrivedHoraire = $app['repository.stop']->getNextTimeByStop($horaire, $nextStop);
+       
+       if($stop == null || $horaire == null || $nextStop == null)
+           return 403;
+       
+        $responseData[] = array(
+            'arret de depart'=>$stop->getNom(),
+            'heure de depart'=>$horaire->getHeure(),
+            'Prochain arret'=>$nextStop->getNom(),
+            'heure d arrivee'=>$arrivedHoraire->getHeure()    
+        );
+               
+       return $app->json($responseData);
+   }
 
 }
 

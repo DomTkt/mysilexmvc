@@ -21,5 +21,7 @@ $app->post('/stops/save', 'App\Stops\Controller\IndexController::saveAction')->b
 $app->get('/stops/all','App\Stops\Controller\IndexController::listStops')->bind('/stops/all');
 $app->get('/stops/horaires/{id}','App\Stops\Controller\IndexController::horairesByStopAction')->bind('stops.horaires');
 $app->get('/stops/search/{idStop}','App\Stops\Controller\IndexController::searchAction')->bind('stops.search');
+$app->get('/stops/find/{id}','App\Stops\Controller\IndexController::findNextTimeByStopAndTimeAction')->bind('stops.find');
+$app->post('/stops/seenext/{id}','App\Stops\Controller\IndexController::seeNextTimeByStopAndTimeAction')->bind('stops.seenext');
 $app->get('/stops/see/{id}','App\Stops\Controller\IndexController::seeAction')->bind('stops.see');
 

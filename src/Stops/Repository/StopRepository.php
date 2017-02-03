@@ -91,6 +91,22 @@ class StopRepository
        
    }
    
+   public function getHoraireById( $id){
+       
+       
+       $queryBuilder = $this->db->createQueryBuilder();
+       $queryBuilder
+           ->select('h.*')
+           ->from('horaires', 'h')
+           ->where('id = ?')
+           ->setParameter(0, $id);
+       $statement = $queryBuilder->execute();
+       $horData = $statement->fetchAll();
+
+       return new Horaire($horData[0]['id'], $horData[0]['arret'], $horData[0]['heure']);
+       
+   }
+   
    public function getByNomLigne($ligne)
    {
       $nom = "'".$ligne."'";
@@ -195,6 +211,23 @@ class StopRepository
         }
 
         $statement = $queryBuilder->execute();
+    }
+    
+    public function getNextTimeByStop($departureTime, $arrivedStop){
+        
+        $timeList = $this->getHorairesByArret($arrivedStop->getId());
+        
+        $nearestTime = $departureTime;
+        
+        foreach($timeList as $horaire){
+            
+            if(strtotime($horaire->getHeure()) > strtotime($departureTime->getHeure()) && strtotime($departureTime->getHeure()) <= strtotime($nearestTime->getHeure())){
+                $nearestTime = $horaire;
+            }
+        }  
+        
+        return $nearestTime;
+        
     }
 
     public function insert($parameters)
