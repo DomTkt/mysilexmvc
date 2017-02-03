@@ -148,12 +148,14 @@ class StopRepository
        
        $statement = $queryBuilder->execute();
        $stopsData = $statement->fetchAll();
-       
+       $i=0;
        foreach ($stopsData as $stopData) {
-           
+           $i++;
            $stopEntityList[$stopData['id']] = new stop($stopData['id'], $stopData['nom'], $stopData['nomligne']);
        }
 
+       if($i==0)
+           return;
        return $stopEntityList;
    }
 
