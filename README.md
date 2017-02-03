@@ -22,3 +22,4 @@ http://mysilexmvc.local/index.php/stops/all -> Renvoie des données JSON avec po
 
 http://mysilexmvc.local/index.php/stops/horaires/{id_stop}? -> Renvoie des données JSON avec pour chaque arret ses horaires
 
+http://mysilexmvc.local/index.php -> Renvoie vers la liste des lignes
