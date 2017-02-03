@@ -12,32 +12,36 @@
   </tr>
 </thead>
 <tbdoy>
-{% for stop in stops %}
-   <tr>
-     <td>{{stop.id}}</td>
-     <td>{{stop.nom}}</td>
-     <td>{{stop.nomligne}}</td>
-     <td>
-       <form method="post" name="formulaire" action="{{ url('stops.delete', {id: stop.id}) }}">
-            <button type="submit">Supprimer</button>
-        </form>
-      </td>
-      <td>
-        <form method="get" name="formulaire" action="{{ url('stops.edit', {id: stop.id}) }}">
-          <button type="submit">Modifier</button>
-        </form>
-      </td>
-      <td>
-        <form method="get" name="formulaire" action="{{ url('stops.horaires', {id: stop.id}) }}">
-          <button type="submit">Voir les horaires</button>
-        </form>
-      </td>
-      <td>
-        <form method="get" name="formulaire" action="{{ url('stops.find', {id: stop.id}) }}">
-          <button type="submit">Voir la prochaine horaire</button>
-        </form>
-      </td>
-   </tr>
-{% endfor %}
+{% if stops is iterable %}
+    {% for stop in stops %}
+       <tr>
+         <td>{{stop.id}}</td>
+         <td>{{stop.nom}}</td>
+         <td>{{stop.nomligne}}</td>
+         <td>
+           <form method="post" name="formulaire" action="{{ url('stops.delete', {id: stop.id}) }}">
+                <button type="submit">Supprimer</button>
+            </form>
+          </td>
+          <td>
+            <form method="get" name="formulaire" action="{{ url('stops.edit', {id: stop.id}) }}">
+              <button type="submit">Modifier</button>
+            </form>
+          </td>
+          <td>
+            <form method="get" name="formulaire" action="{{ url('stops.horaires', {id: stop.id}) }}">
+              <button type="submit">Voir les horaires</button>
+            </form>
+          </td>
+          <td>
+            <form method="get" name="formulaire" action="{{ url('stops.find', {id: stop.id}) }}">
+              <button type="submit">Voir la prochaine horaire</button>
+            </form>
+          </td>
+       </tr>
+    {% endfor %}
+{% else %}
+    <p>PAS D'ARRETS POUR CETTE LIGNE</p>  
+{% endif %}
 </tbdoy>
 </table>
